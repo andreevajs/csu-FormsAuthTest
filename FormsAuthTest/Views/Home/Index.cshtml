@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1 class="display-4">Welcome, @ViewContext.HttpContext.User.Identity.Name!</h1>
+        <div class="nav-link text-secondary">last login time: @ViewContext.HttpContext.User.Claims.FirstOrDefault(claim => claim.Type == "authtest://claims/login-time")?.Value</div>
+    }
+    else
+    {
+        <h1 class="display-4">Welcome, stranger!
+            <sub><a class="nav-link text-primary" asp-area="" asp-controller="Account" asp-action="SignIn">Sign In?</a></sub>
+        </h1>
+        
+    }
+
+</div>
